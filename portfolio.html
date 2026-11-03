@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio - Diseñador Creativo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0e27;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff69b4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff69b4;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 3rem;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 350px;
+            height: 350px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Section */
+        .section {
+            padding: 6rem 3rem;
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            color: #ff69b4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        /* Works Grid */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .work-card {
+            background: rgba(255, 105, 180, 0.05);
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .work-card:hover {
+            border-color: #ff69b4;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.15);
+        }
+
+        .work-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1f3a 0%, #2a2f4a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff69b4;
+            font-size: 3rem;
+        }
+
+        .work-card-content {
+            padding: 1.5rem;
+        }
+
+        .work-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .work-card p {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+
+        /* Awards Section */
+        .awards-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .award-number {
+            font-size: 8rem;
+            font-weight: 900;
+            color: #ff69b4;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .awards-list {
+            list-style: none;
+        }
+
+        .award-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 105, 180, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .award-item:last-child {
+            border-bottom: none;
+        }
+
+        .award-item-text h4 {
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+        }
+
+        .award-item-text p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        .award-year {
+            color: #ff69b4;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Content Section */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .content-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #1a1f3a 0%, #2a2f4a 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff69b4;
+            font-size: 4rem;
+        }
+
+        .content-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .content-text p {
+            font-size: 1rem;
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 105, 180, 0.05);
+            border: 1px solid rgba(255, 105, 180, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: #ff69b4;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+        }
+
+        .service-card h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .cta-content p {
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff69b4;
+            color: #0a0e27;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid #ff69b4;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #ff69b4;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff69b4;
+            font-size: 1.5rem;
+        }
+
+        .contact-item-text h4 {
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-item-text p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 39, 0.5);
+            padding: 2rem 3rem;
+            text-align: center;
+            color: #a0a0a0;
+            border-top: 1px solid rgba(255, 105, 180, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                margin-top: 100px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .awards-container,
+            .content-grid,
+            .cta-section {
+                grid-template-columns: 1fr;
+            }
+
+            .award-number {
+                font-size: 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">DESIGNO</div>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#trabajos">Trabajos</a></li>
+            <li><a href="#sobre">Sobre Mí</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Creando historias visuales que impactan</h1>
+            <p>Diseño, dirección y contenido creativo de alto nivel. Transformo ideas en experiencias memorables.</p>
+        </div>
+        <div class="hero-image">
+            <img src="/root/.claude/uploads/5db13019-14bc-5f71-b54f-fbc5138f2008/42c73f22-image.jpg" alt="Perfil">
+        </div>
+    </section>
+
+    <!-- Works Section -->
+    <section class="section" id="trabajos">
+        <div class="section-title">Mi Trabajo Destacado</div>
+        <h2>Karya Yang Bicara</h2>
+        <div class="works-grid">
+            <div class="work-card">
+                <div class="work-card-image">🎬</div>
+                <div class="work-card-content">
+                    <h3>Videografía Profesional</h3>
+                    <p>Producción de videos comerciales y contenido audiovisual de alta calidad.</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <div class="work-card-image">🎨</div>
+                <div class="work-card-content">
+                    <h3>Diseño Gráfico</h3>
+                    <p>Identidad visual y diseño creativo para marcas modernas.</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <div class="work-card-image">✨</div>
+                <div class="work-card-content">
+                    <h3>Motion Design</h3>
+                    <p>Animaciones y efectos visuales que cautivan al espectador.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="section">
+        <div class="section-title">Reconocimiento y Premios</div>
+        <div class="awards-container">
+            <div>
+                <div class="award-number">10+</div>
+                <p style="color: #a0a0a0; font-size: 1.1rem;">Premios internacionales ganados en los últimos años</p>
+            </div>
+            <div>
+                <ul class="awards-list">
+                    <li class="award-item">
+                        <div class="award-item-text">
+                            <h4>1st Place</h4>
+                            <p>Cinematography Exam</p>
+                        </div>
+                        <span class="award-year">2025</span>
+                    </li>
+                    <li class="award-item">
+                        <div class="award-item-text">
+                            <h4>Best Short Film</h4>
+                            <p>International Film Festival</p>
+                        </div>
+                        <span class="award-year">2024</span>
+                    </li>
+                    <li class="award-item">
+                        <div class="award-item-text">
+                            <h4>Design Excellence</h4>
+                            <p>Creative Awards</p>
+                        </div>
+                        <span class="award-year">2023</span>
+                    </li>
+                    <li class="award-item">
+                        <div class="award-item-text">
+                            <h4>Visual Innovation</h4>
+                            <p>Creative Industry Awards</p>
+                        </div>
+                        <span class="award-year">2022</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section 1 -->
+    <section class="section" id="sobre">
+        <div class="section-title">Mi Enfoque</div>
+        <div class="content-grid">
+            <div class="content-image">📸</div>
+            <div class="content-text">
+                <h3>No solo visual. Sino una forma de contar historias</h3>
+                <p>Cada proyecto es una oportunidad para crear algo extraordinario. Combino técnica, creatividad y estrategia para producir contenido que no solo se ve bien, sino que conecta emocionalmente con la audiencia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section 2 -->
+    <section class="section">
+        <div class="section-title">Evolución Constante</div>
+        <div class="content-grid" style="direction: rtl;">
+            <div class="content-image">🚀</div>
+            <div class="content-text" style="direction: ltr;">
+                <h3>Siempre en movimiento. Siempre creando</h3>
+                <p>La industria creativa nunca deja de evolucionar, y yo tampoco. Constantemente estoy aprendiendo nuevas técnicas, explorando tendencias y perfeccionando mi craft para traerte lo mejor.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="servicios">
+        <div class="section-title">Servicios</div>
+        <h2>¿Qué Puedo Hacer Por Ti?</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Videografía</h3>
+                <p>Desde conceptualización hasta postproducción. Videos comerciales, documentales, y contenido multimedia profesional.</p>
+            </div>
+            <div class="service-card">
+                <h3>Diseño Gráfico</h3>
+                <p>Identidad visual completa, branding, packaging, y todo lo que tu marca necesita para destacar.</p>
+            </div>
+            <div class="service-card">
+                <h3>Motion Design</h3>
+                <p>Animaciones, efectos visuales y contenido dinámico que cautivan y transmiten tu mensaje.</p>
+            </div>
+            <div class="service-card">
+                <h3>Edición de Contenido</h3>
+                <p>Edición profesional de video y contenido multimedia con un toque creativo único.</p>
+            </div>
+            <div class="service-card">
+                <h3>Consultoría Creativa</h3>
+                <p>Asesoramiento en estrategia visual y creatividad para llevar tus proyectos al siguiente nivel.</p>
+            </div>
+            <div class="service-card">
+                <h3>Producción Completa</h3>
+                <p>Manejo integral de proyectos desde la idea inicial hasta la entrega final lista para impactar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" id="contacto">
+        <div class="section-title">Trabajemos Juntos</div>
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Let's Work Together</h2>
+                <p>¿Tienes un proyecto en mente? Cuéntame tu idea y hagamos algo extraordinario juntos. Estoy listo para crear historias que impacten.</p>
+                <a href="mailto:tu-email@example.com" class="cta-button">Contactame</a>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-item-icon">✉️</div>
+                    <div class="contact-item-text">
+                        <h4>Email</h4>
+                        <p>hola@tuportfolio.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📱</div>
+                    <div class="contact-item-text">
+                        <h4>Teléfono</h4>
+                        <p>+57 (123) 456-7890</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <div class="contact-item-text">
+                        <h4>Ubicación</h4>
+                        <p>Bogotá, Colombia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Mi Portfolio. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
